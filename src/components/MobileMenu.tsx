@@ -1,0 +1,160 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { logoutAction } from "@/app/actions/auth-actions";
+import { GENRES } from "@/lib/constants";
+
+type MobileMenuProps = {
+  session: any;
+  count?: number;
+};
+
+export default function MobileMenu({ session, count = 0 }: MobileMenuProps) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const closeMenu = () => setIsOpen(false);
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [isOpen]);
+
+  return (
+    <>
+      {/* Hamburger button */}
+      <button
+        onClick={() => setIsOpen(true)}
+        className="sm:hidden mobile-menu-btn p-2 text-ink-soft hover:text-oxblood transition-colors focus:outline-none cursor-pointer"
+        aria-label="Open navigation menu"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+          <path d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
+      {/* Overlay */}
+      <div
+        className={`sm:hidden mobile-overlay ${isOpen ? "is-open" : ""}`}
+        onClick={closeMenu}
+      />
+
+      {/* Drawer */}
+      <div
+        className={`sm:hidden mobile-drawer ${isOpen ? "is-open" : ""}`}
+        style={{
+          transform: isOpen ? "translateX(0)" : "translateX(100%)",
+        }}
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between px-6 py-5 border-b border-ink/10 shrink-0">
+          <span className="font-bold text-xs tracking-widest text-ink-soft uppercase" style={{ fontFamily: "var(--font-stamp)" }}>
+            Menu
+          </span>
+          <button onClick={closeMenu} className="p-1 text-ink-soft hover:text-oxblood transition-colors cursor-pointer">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+              <path d="M18 6 6 18M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Content */}
+        <div className="flex-1 overflow-y-auto px-6 py-5 flex flex-col">
+
+          {/* Search */}
+          <form action="/shop" onSubmit={closeMenu} className="mb-6">
+            <div className="relative">
+              <input
+                name="q"
+                type="search"
+                placeholder="Search notebooks, pens, washi..."
+                className="w-full rounded-full border border-ink/20 bg-[#ede4d3] px-4 py-2 text-sm text-ink
+                           placeholder:text-ink-soft/70 focus:border-oxblood focus:outline-none transition-colors"
+              />
+              <button type="submit" className="absolute right-3 top-1/2 -translate-y-1/2 text-ink-soft/70 hover:text-oxblood">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
+                </svg>
+              </button>
+            </div>
+          </form>
+
+          {/* Nav */}
+          <nav className="flex flex-col" style={{ fontFamily: "var(--font-stamp)" }}>
+
+            <Link href="/shop" onClick={closeMenu}
+              className="flex items-center justify-between py-3.5 border-b border-ink/8 text-sm font-semibold text-ink hover:text-oxblood transition-colors">
+              <span>SHOP ALL</span><span className="text-ink/30 text-xs">→</span>
+            </Link>
+
+            <Link href="/my-orders" onClick={closeMenu}
+              className="flex items-center justify-between py-3.5 border-b border-ink/8 text-sm font-semibold text-ink hover:text-oxblood transition-colors">
+              <span>MY ORDERS</span><span className="text-ink/30 text-xs">→</span>
+            </Link>
+
+
+
+            {/* Categories */}
+            <div className="mt-5">
+              <p className="text-[10px] font-bold tracking-widest text-ink-soft uppercase mb-3">
+                Shop by Category
+              </p>
+              {GENRES.map((g) => (
+                <Link
+                  key={g}
+                  href={`/shop?genre=${encodeURIComponent(g)}`}
+                  onClick={closeMenu}
+                  className="flex items-center justify-between py-2.5 border-b border-ink/5 text-sm text-ink hover:text-oxblood transition-colors"
+                >
+                  <span>{g}</span>
+                  <span className="text-ink/25 text-xs">→</span>
+                </Link>
+              ))}
+            </div>
+
+            {/* Contact Info */}
+            <div className="mt-8 border-t border-ink/8 pt-5">
+              <p className="text-[10px] font-bold tracking-widest text-ink-soft uppercase mb-3">
+                Contact Us
+              </p>
+              <div className="space-y-3 font-sans">
+                <div>
+                  <span className="text-[9px] uppercase tracking-wider block font-bold text-ink-soft/50" style={{ fontFamily: "var(--font-stamp)" }}>PHONE</span>
+                  <a href="tel:03373876846" className="text-oxblood font-semibold hover:underline block text-[13px]">
+                    03373876846
+                  </a>
+                </div>
+                <div>
+                  <span className="text-[9px] uppercase tracking-wider block font-bold text-ink-soft/50" style={{ fontFamily: "var(--font-stamp)" }}>EMAIL</span>
+                  <a href="mailto:notebloom50@gmail.com" className="text-oxblood font-semibold hover:underline block text-[13px]">
+                    notebloom50@gmail.com
+                  </a>
+                </div>
+              </div>
+            </div>
+          </nav>
+        </div>
+
+        {/* Log out — only if admin is logged in */}
+        {session?.user?.isAdmin && (
+          <div className="px-6 py-5 border-t border-ink/10 shrink-0">
+            <form action={logoutAction} onSubmit={() => sessionStorage.removeItem("notebloom_admin_tab_session")}>
+              <button
+                type="submit"
+                className="w-full py-2.5 px-4 rounded-full border border-oxblood/30 text-oxblood
+                           hover:bg-oxblood hover:text-cream transition-all text-sm font-semibold
+                           flex items-center justify-center gap-2 cursor-pointer bg-transparent"
+                style={{ fontFamily: "var(--font-stamp)" }}
+              >
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" />
+                </svg>
+                LOG OUT
+              </button>
+            </form>
+          </div>
+        )}
+      </div>
+    </>
+  );
+}

@@ -1,0 +1,197 @@
+@import "tailwindcss";
+@import "@fontsource-variable/inter/index.css";
+
+@theme {
+  /* -- the carefirst palette -- */
+  --color-primary: #00829B;
+  --color-primary-dark: #006A80;
+  --color-primary-light: #e6f7fa;
+  --color-accent: #f97316; /* Orange for urgent/discounts */
+  --color-accent-dark: #ea580c;
+  --color-background: #f9fafb;
+  --color-surface: #ffffff;
+  --color-text: #1f2937;
+  --color-text-light: #6b7280;
+  --color-border: #e5e7eb;
+
+  --font-display: "Inter Variable", "Inter", sans-serif;
+  --font-body: "Inter Variable", "Inter", sans-serif;
+  --font-stamp: "Space Mono", "Courier New", monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+/* Hide scrollbars for clean swipe layouts */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* trail link removed for a cleaner e-commerce look */
+.trail-link {
+  text-decoration: none;
+}
+.trail-link:hover {
+  color: var(--color-primary);
+}
+
+/* visible focus ring everywhere */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+::selection {
+  background: var(--color-primary-light);
+  color: var(--color-primary-dark);
+}
+
+/* Toast animations */
+@keyframes slideIn {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slideIn {
+  animation: slideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ─── Mobile Feedback & Loaders ───────────────────────────────────────────── */
+.mobile-ripple-host {
+  position: relative !important;
+  overflow: hidden !important;
+}
+.mobile-ripple-span {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  background-color: rgba(0, 130, 155, 0.25);
+  pointer-events: none;
+  animation: mobile-ripple 0.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes mobile-ripple {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Button & Link loading spinner */
+button.btn-loading, a.btn-loading {
+  position: relative !important;
+  color: transparent !important;
+  pointer-events: none !important;
+}
+
+button.btn-loading > *, a.btn-loading > * {
+  opacity: 0 !important;
+}
+
+button.btn-loading::after, a.btn-loading::after {
+  content: "";
+  position: absolute;
+  width: 1.25rem;
+  height: 1.25rem;
+  top: calc(50% - 0.625rem);
+  left: calc(50% - 0.625rem);
+  border: 2.5px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: btn-spin 0.6s linear infinite;
+}
+
+@keyframes btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Top Progress Bar Loader */
+#top-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--color-primary);
+  z-index: 10001;
+  transition: width 0.25s ease, opacity 0.4s ease;
+  box-shadow: 0 0 10px rgba(0, 130, 155, 0.6);
+  pointer-events: none;
+}
+
+/* Vanilla CSS Mobile Drawer Menu & Overlay */
+.mobile-drawer {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  z-index: 100 !important;
+  height: 100vh !important;
+  width: 300px !important;
+  background-color: #ffffff !important;
+  border-left: 1px solid var(--color-border) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.1) !important;
+  visibility: hidden !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), visibility 0s 0.3s !important;
+}
+
+.mobile-drawer.is-open {
+  visibility: visible !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.mobile-overlay {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(2px) !important;
+  z-index: 99 !important;
+  transition: opacity 0.3s ease !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+}
+
+.mobile-overlay.is-open {
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+.mobile-menu-btn {
+  display: block;
+}
+
+@media (min-width: 640px) {
+  .mobile-overlay, .mobile-drawer, .mobile-menu-btn {
+    display: none !important;
+  }
+}
