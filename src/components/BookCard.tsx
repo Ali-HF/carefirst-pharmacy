@@ -8,8 +8,8 @@ export default function BookCard({ book }: { book: Book & { rating_avg?: number;
   // Map "book" properties to standard e-commerce fields
   const title = book.title;
   const author = book.author;
-  const price = book.price;
-  const stock = book.inventory_count || 0;
+  const price_cents = book.price_cents;
+  const stock = book.stock || 0;
   const inStock = stock > 0;
   
   return (
@@ -51,18 +51,24 @@ export default function BookCard({ book }: { book: Book & { rating_avg?: number;
         <div className="mt-auto flex items-end justify-between gap-2">
           <div className="flex flex-col">
             <span className="text-lg font-bold text-primary-dark leading-none">
-              ${Number(price).toFixed(2)}
+              Rs. {Number(price_cents / 100).toFixed(2)}
             </span>
           </div>
           
           <div className="relative z-20">
-            <AddToCartButton
-              bookId={book.id}
-              inStock={inStock}
-              className="bg-primary/10 hover:bg-primary text-primary hover:text-white p-2.5 rounded-full transition-colors flex items-center justify-center border-none shadow-none"
-            >
-              <ShoppingCart className="w-5 h-5" />
-            </AddToCartButton>
+            {inStock ? (
+              <AddToCartButton
+                bookId={book.id}
+                bookTitle={title}
+                className="bg-primary/10 hover:bg-primary text-primary hover:text-white p-2.5 rounded-full transition-colors flex items-center justify-center border-none shadow-none"
+              >
+                <ShoppingCart className="w-5 h-5" />
+              </AddToCartButton>
+            ) : (
+              <button disabled className="bg-gray-100 text-gray-400 p-2.5 rounded-full flex items-center justify-center border-none shadow-none cursor-not-allowed">
+                <ShoppingCart className="w-5 h-5" />
+              </button>
+            )}
           </div>
         </div>
       </div>
