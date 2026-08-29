@@ -1,23 +1,31 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function Logo({ tagline = false }: { tagline?: boolean }) {
+export default function Logo({ light = false }: { light?: boolean }) {
   return (
     <Link
       href="/"
-      className="flex flex-col focus-visible:outline-none focus-visible:rounded-sm hover:opacity-85 transition-opacity"
+      className="inline-flex items-center gap-2.5 sm:gap-3 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary hover:opacity-90 transition-opacity"
     >
-      <div className="relative h-16 w-48 sm:h-24 sm:w-72 shrink-0 -my-3 sm:-my-7">
+      <div className="relative h-8 w-8 sm:h-9 sm:w-9 shrink-0">
         <Image
           src="/logo.jpg"
-          alt="Carefirst Pharmacy Logo"
+          alt="Carefirst Pharmacy Icon"
           fill
           priority
-          className="object-contain object-left scale-145 sm:scale-155 origin-left"
+          className="object-contain rounded-xs"
         />
       </div>
+      <span
+        className={`font-extrabold text-base sm:text-lg md:text-xl tracking-wider uppercase select-none ${
+          light ? "text-white" : "text-[#0c2a4d]"
+        }`}
+      >
+        CARE FIRST PHARMACY
+      </span>
     </Link>
   );
 }
+
 
 

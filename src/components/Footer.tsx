@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { GENRES } from "@/lib/constants";
+import Logo from "./Logo";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -25,18 +25,7 @@ export default function Footer() {
           
           {/* Column 1: About Carefirst Pharmacy (Logo & Story) - Span 5 */}
           <div className="md:col-span-5 space-y-6">
-            <Link href="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary">
-              <div className="relative h-12 w-48 shrink-0">
-                <Image
-                  src="/logo-transparent.png"
-                  alt="Carefirst Pharmacy Logo"
-                  fill
-                  priority
-                  className="object-contain object-left"
-                  style={{ filter: "brightness(0) invert(0.95)" }}
-                />
-              </div>
-            </Link>
+            <Logo light={true} />
             
             <div className="space-y-4">
               <h3 className="text-sm font-semibold tracking-wider text-primary uppercase">
