@@ -46,16 +46,17 @@ export default function BookCover({
   className?: string;
   sizes?: string;
 }) {
-  const isUrl = seed.startsWith("http://") || seed.startsWith("https://") || seed.startsWith("/");
+  const isUrl = seed && (seed.startsWith("http://") || seed.startsWith("https://") || seed.startsWith("/"));
   if (isUrl && !isSecondary) {
     return (
-      <div className={`relative overflow-hidden bg-stone-50 rounded-xl shadow-sm ring-1 ring-black/5 ${className}`} style={{ aspectRatio: "1/1" }}>
+      <div className={`relative overflow-hidden bg-white rounded-md flex items-center justify-center p-2 ${className}`} style={{ aspectRatio: "1/1" }}>
         <Image
           src={seed}
           alt={title}
           fill
+          unoptimized={true}
           sizes={sizes}
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-contain transition-transform duration-300 group-hover:scale-105"
         />
       </div>
     );

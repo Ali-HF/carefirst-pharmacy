@@ -26,12 +26,13 @@ function Slide({ title, author, genre, seed, isSecondary }: {
 }) {
   if (isUrl(seed)) {
     return (
-      <div className="relative w-full h-full">
+      <div className="relative w-full h-full bg-white flex items-center justify-center p-4">
         <Image
           src={seed}
           alt={title}
           fill
-          className="object-cover"
+          unoptimized={true}
+          className="object-contain"
           sizes="(max-width: 640px) 100vw, 600px"
           priority
         />

@@ -60,7 +60,7 @@ export default async function HomePage({
         <h2 className="text-2xl font-bold text-primary-dark mb-6">Shop by Category</h2>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {categories.map((cat) => (
-            <Link href={`/shop?category=${cat.name.toLowerCase()}`} key={cat.name} className="group">
+            <Link href={`/shop?genre=${encodeURIComponent(cat.name)}`} key={cat.name} className="group">
               <div className="bg-white rounded-xl p-4 flex flex-col items-center justify-center gap-3 border border-border hover:border-primary hover:shadow-md transition-all h-32">
                 <div className={`w-14 h-14 rounded-full ${cat.color} flex items-center justify-center text-2xl group-hover:scale-110 transition-transform`}>
                   {cat.icon}
