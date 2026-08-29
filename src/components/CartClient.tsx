@@ -130,19 +130,15 @@ export default function CartClient({
     return (
       <div className="max-w-2xl mx-auto px-4 sm:px-6 py-24 text-center flex flex-col items-center gap-4">
         <BloomMark size={40} />
-        <h1 className="text-3xl" style={{ fontFamily: "var(--font-display)", fontWeight: 600 }}>
-          Your cart is empty
-        </h1>
-        <p className="text-ink-soft">Find some lovely stationery products to get started.</p>
-        <div className="flex gap-3 mt-2">
-          <Link
-            href="/shop"
-            className="px-5 py-2.5 rounded-full ring-1 ring-ink/20 text-sm hover:ring-oxblood transition-colors"
-            style={{ fontFamily: "var(--font-stamp)" }}
-          >
-            BROWSE STORE
-          </Link>
-        </div>
+        <div className="text-center py-16">
+        <p className="text-gray-500">Your cart is empty. Browse our authentic medicines and healthcare products to get started.</p>
+        <Link
+          href="/shop"
+          className="mt-6 inline-block bg-primary hover:bg-primary-dark text-white px-6 py-2.5 rounded-md font-semibold text-sm transition-colors"
+        >
+          START SHOPPING
+        </Link>
+      </div>
       </div>
     );
   }

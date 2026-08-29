@@ -858,7 +858,7 @@ export default function CheckoutClient({
               className="object-contain"
             />
           </div>
-          <div style={s.footerSub}>© 2026 Carefirst Pharmacy Stationery. Crafted for focus.</div>
+          <div style={s.footerSub}>© 2026 Carefirst Pharmacy. Your Trusted Healthcare Partner.</div>
         </div>
         <div style={s.footerLinks}>
           {[

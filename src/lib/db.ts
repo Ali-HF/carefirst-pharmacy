@@ -885,7 +885,7 @@ export async function placeOrder(
   try {
     const result = await sql.begin(async (sql) => {
       // 1. Create order (Default COD orders to 'Pending')
-      const orderCode = "NB-" + crypto.randomBytes(4).toString("hex").toUpperCase();
+      const orderCode = "CF-" + crypto.randomBytes(4).toString("hex").toUpperCase();
       const orderResult = await sql`
         INSERT INTO orders (user_id, total_cents, status, shipping_json, payment_method, order_code) 
         VALUES (${userId}, ${total}, 'Pending', ${shippingJson}, ${paymentMethod}, ${orderCode})
