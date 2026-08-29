@@ -16,14 +16,14 @@ export default function MarqueeBanner() {
   const renderItems = [...items, ...items];
 
   return (
-    <div className="bg-primary-dark text-white overflow-hidden py-2 border-b border-primary relative z-50">
+    <div className="bg-[#081d36] text-white overflow-hidden py-2 border-b border-[#0c2a4d] relative z-50">
       <div className="animate-marquee flex items-center">
         {renderItems.map((item, i) => {
           const Icon = item.icon;
           return (
             <div key={i} className="flex items-center mx-8 shrink-0">
-              <Icon className="w-4 h-4 mr-2 opacity-80" />
-              <span className="text-[11px] font-bold tracking-widest uppercase opacity-90">
+              <Icon className="w-4 h-4 mr-2 text-primary" />
+              <span className="text-[11px] font-bold tracking-widest uppercase text-gray-200">
                 {item.text}
               </span>
             </div>

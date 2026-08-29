@@ -35,9 +35,10 @@ export default function FilterBar({
   const activeLabel = genre ?? "All";
 
   const pillClass = (active: boolean) =>
-    `shrink-0 px-3.5 py-1.5 rounded-full text-[0.7rem] transition-all duration-200 border ${active
-      ? "bg-oxblood text-cream border-oxblood shadow-[0_2px_8px_-2px_rgba(124,47,47,0.45)] scale-[1.03]"
-      : "bg-parchment text-ink border-ink/12 hover:border-oxblood/40 hover:text-oxblood hover:bg-oxblood/5"
+    `shrink-0 px-3.5 py-1.5 rounded-md text-xs font-semibold transition-all duration-200 border ${
+      active
+        ? "bg-[#0c2a4d] text-white border-[#0c2a4d] shadow-sm"
+        : "bg-white text-gray-700 border-gray-200 hover:border-primary hover:text-primary hover:bg-orange-50/30"
     }`;
 
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -57,27 +58,27 @@ export default function FilterBar({
 
   return (
     <div
-      className={`sticky top-20 z-30 mb-8 transition-all duration-300
-                  bg-cream/90 backdrop-blur-md border border-ink/8
-                  ${scrolled
-          ? "mx-2 sm:mx-6 rounded-2xl shadow-[0_8px_32px_-8px_rgba(32,40,58,0.18)]"
-          : "rounded-2xl shadow-[0_4px_24px_-8px_rgba(32,40,58,0.08)]"
-        }`}
+      className={`sticky top-4 z-30 mb-8 transition-all duration-300
+                  bg-white/95 backdrop-blur-md border border-gray-200
+                  ${
+                    scrolled
+                      ? "mx-2 sm:mx-6 rounded-xl shadow-md"
+                      : "rounded-xl shadow-sm"
+                  }`}
     >
       {/* Main row */}
-      <div className="flex items-center justify-between gap-4 px-6 sm:px-10 py-4">
+      <div className="flex items-center justify-between gap-4 px-4 sm:px-6 py-3">
 
         {/* Desktop pills */}
         <div className="hidden sm:flex items-center gap-2 flex-wrap flex-1 min-w-0">
           <span
-            className="shrink-0 text-[0.65rem] px-2.5 py-1 rounded-full bg-parchment
-                       text-ink-soft border border-ink/10 tabular-nums"
-            style={{ fontFamily: "var(--font-stamp)" }}
+            className="shrink-0 text-xs px-2.5 py-1 rounded-md bg-gray-100
+                       text-gray-600 border border-gray-200 tabular-nums font-medium"
           >
             {count} {count === 1 ? "item" : "items"}
           </span>
 
-          <div className="shrink-0 w-px h-4 bg-ink/10 mx-1" />
+          <div className="shrink-0 w-px h-4 bg-gray-200 mx-1" />
 
           <Link
             href={(() => {
@@ -88,7 +89,6 @@ export default function FilterBar({
               return qs ? `/shop?${qs}` : "/shop";
             })()}
             className={pillClass(!genre)}
-            style={{ fontFamily: "var(--font-stamp)" }}
             onClick={(e) => {
               if (onGenreChange) {
                 e.preventDefault();
@@ -109,7 +109,6 @@ export default function FilterBar({
                 key={g}
                 href={`/shop?${params.toString()}`}
                 className={pillClass(genre === g)}
-                style={{ fontFamily: "var(--font-stamp)" }}
                 onClick={(e) => {
                   if (onGenreChange) {
                     e.preventDefault();
@@ -127,19 +126,18 @@ export default function FilterBar({
         <button
           className="sm:hidden flex items-center gap-2 flex-1"
           onClick={() => setMobileOpen((o) => !o)}
-          style={{ fontFamily: "var(--font-stamp)" }}
         >
-          <span className="text-[0.7rem] text-ink-soft">{count} items</span>
-          <div className="w-px h-4 bg-ink/10 mx-1" />
+          <span className="text-xs text-gray-500 font-medium">{count} items</span>
+          <div className="w-px h-4 bg-gray-200 mx-1" />
           <span
-            className="px-3.5 py-1.5 rounded-full text-[0.7rem] bg-oxblood text-cream border border-oxblood"
+            className="px-3 py-1 rounded-md text-xs font-semibold bg-[#0c2a4d] text-white border border-[#0c2a4d]"
           >
             {activeLabel}
           </span>
           <svg
             width="12" height="12" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" strokeWidth="2.5"
-            className={`ml-auto text-ink-soft transition-transform duration-200 ${mobileOpen ? "rotate-180" : ""}`}
+            className={`ml-auto text-gray-400 transition-transform duration-200 ${mobileOpen ? "rotate-180" : ""}`}
           >
             <path d="m6 9 6 6 6-6" />
           </svg>
@@ -148,10 +146,9 @@ export default function FilterBar({
         {/* Sort — always visible */}
         <div className="shrink-0 relative">
           <select
-            className="appearance-none bg-parchment border border-ink/12 rounded-full
-                       pl-3.5 pr-8 py-1.5 text-[0.7rem] text-ink cursor-pointer
-                       hover:border-oxblood/40 focus:border-oxblood focus:outline-none transition-colors"
-            style={{ fontFamily: "var(--font-stamp)" }}
+            className="appearance-none bg-gray-50 border border-gray-200 rounded-md
+                       pl-3.5 pr-8 py-1.5 text-xs text-gray-700 font-medium cursor-pointer
+                       hover:border-primary focus:border-primary focus:outline-none transition-colors"
             value={sort || "best"}
             onChange={handleSortChange}
           >
@@ -160,7 +157,7 @@ export default function FilterBar({
             <option value="price-asc">Price: Low to High</option>
             <option value="price-desc">Price: High to Low</option>
           </select>
-          <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none text-ink-soft">
+          <div className="absolute inset-y-0 right-3 flex items-center pointer-events-none text-gray-400">
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <path d="m6 9 6 6 6-6" />
             </svg>
@@ -170,7 +167,7 @@ export default function FilterBar({
 
       {/* Mobile dropdown */}
       {mobileOpen && (
-        <div className="sm:hidden px-6 pb-4 flex flex-wrap gap-2 border-t border-ink/8 pt-3">
+        <div className="sm:hidden px-4 pb-4 flex flex-wrap gap-2 border-t border-gray-100 pt-3">
           <Link
             href={(() => {
               const params = new URLSearchParams();
@@ -180,7 +177,6 @@ export default function FilterBar({
               return qs ? `/shop?${qs}` : "/shop";
             })()}
             className={pillClass(!genre)}
-            style={{ fontFamily: "var(--font-stamp)" }}
             onClick={(e) => {
               setMobileOpen(false);
               if (onGenreChange) {
@@ -201,7 +197,6 @@ export default function FilterBar({
                 key={g}
                 href={`/shop?${params.toString()}`}
                 className={pillClass(genre === g)}
-                style={{ fontFamily: "var(--font-stamp)" }}
                 onClick={(e) => {
                   setMobileOpen(false);
                   if (onGenreChange) {

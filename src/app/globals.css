@@ -2,10 +2,13 @@
 @import "@fontsource-variable/inter/index.css";
 
 @theme {
-  /* -- the carefirst corporate orange palette -- */
+  /* -- the carefirst brand palette (Navy & Orange) -- */
   --color-primary: #f97316; /* Corporate Orange */
   --color-primary-dark: #ea580c;
   --color-primary-light: #fff7ed;
+  --color-navy: #0c2a4d; /* Corporate Deep Navy */
+  --color-navy-dark: #081d36;
+  --color-navy-light: #163c66;
   --color-accent: #111827; /* Corporate Dark Gray */
   --color-accent-dark: #000000;
   --color-background: #f9fafb;

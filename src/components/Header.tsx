@@ -125,14 +125,14 @@ export default async function Header() {
       </div>
 
       {/* Navigation - Bottom */}
-      <nav className="bg-primary text-white hidden md:block">
+      <nav className="bg-[#0c2a4d] text-white hidden md:block border-t border-[#163c66]">
         <div className="max-w-7xl mx-auto px-4">
-          <ul className="flex items-center gap-6">
+          <ul className="flex items-center gap-2">
             {["Medicine", "Vitamins", "Personal Care", "Devices", "Baby & Mother", "Herbal"].map(cat => (
               <li key={cat}>
                 <Link
                   href={`/shop?genre=${encodeURIComponent(cat)}`}
-                  className="flex items-center py-3 text-sm font-medium hover:bg-primary-dark px-3 rounded-sm transition-colors"
+                  className="flex items-center py-2.5 px-3.5 text-sm font-semibold tracking-wide text-gray-100 hover:text-primary hover:bg-[#163c66] rounded-md transition-colors"
                 >
                   {cat}
                 </Link>
