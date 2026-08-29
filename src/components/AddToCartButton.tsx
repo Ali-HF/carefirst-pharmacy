@@ -103,7 +103,7 @@ export default function AddToCartButton({
         <button
           type="submit"
           disabled={status === "adding"}
-          className={className || "flex-1 sm:flex-none h-11 px-6 rounded-full bg-primary text-white hover:bg-primary-dark active:scale-95 active:opacity-90 transition-all text-sm cursor-pointer disabled:opacity-60 font-semibold shadow-md flex items-center justify-center tracking-wider"}
+          className={className || "flex-1 sm:flex-none h-11 px-6 rounded-md bg-primary text-white hover:bg-primary-dark active:scale-95 active:opacity-90 transition-all text-sm cursor-pointer disabled:opacity-60 font-semibold shadow-md flex items-center justify-center tracking-wider"}
         >
           {status === "added" ? "Added!" : (children || "ADD TO CART")}
         </button>
@@ -116,7 +116,7 @@ export default function AddToCartButton({
       <button
         type="submit"
         disabled={status === "adding"}
-        className={className || "text-xs px-3.5 py-2 rounded-full bg-primary text-white hover:bg-primary-dark active:scale-95 active:opacity-90 transition-all cursor-pointer disabled:opacity-60 font-semibold min-h-[38px] min-w-[75px] shadow-sm flex items-center justify-center"}
+        className={className || "text-xs px-3.5 py-2 rounded-md bg-primary text-white hover:bg-primary-dark active:scale-95 active:opacity-90 transition-all cursor-pointer disabled:opacity-60 font-semibold min-h-[38px] min-w-[75px] shadow-sm flex items-center justify-center"}
       >
         {status === "added" ? "Added!" : (children || "ADD")}
       </button>

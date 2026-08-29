@@ -3,25 +3,14 @@ import Image from "next/image";
 type Palette = { bg: string; fg: string; band: string };
 
 
-const PALETTES: Record<string, Palette> = {
-  Notebooks: { bg: "#faf0e6", fg: "#4a3c31", band: "#d8c3a5" },
-  Planners: { bg: "#eef1f6", fg: "#2c3e50", band: "#adc5d9" },
-  Pens: { bg: "#fff0f5", fg: "#603040", band: "#e899b3" },
-  "Sticky Notes": { bg: "#feffd9", fg: "#55521a", band: "#e0d86a" },
-  "Washi Tape": { bg: "#e8fdf5", fg: "#1f4a3e", band: "#8feac6" },
-  "Pencil Cases": { bg: "#faf1e6", fg: "#5a4d41", band: "#cbb89e" },
-  Accessories: { bg: "#f0f8ff", fg: "#1c3d5a", band: "#a0c4ff" },
-  "Desk Decor": { bg: "#fdf2f8", fg: "#701a4f", band: "#f472b6" },
+const PALETTES: Record<string, { bg: string; fg: string }> = {
+  Medicine: { bg: "#e0f2fe", fg: "#0284c7" },
+  Vitamins: { bg: "#fef9c3", fg: "#ca8a04" },
+  "Personal Care": { bg: "#fce7f3", fg: "#db2777" },
+  Devices: { bg: "#f3f4f6", fg: "#4b5563" },
+  "Baby & Mother": { bg: "#ffedd5", fg: "#ea580c" },
+  Herbal: { bg: "#dcfce7", fg: "#16a34a" },
 };
-
-function hashCode(str: string): number {
-  let h = 0;
-  for (let i = 0; i < str.length; i++) {
-    h = (h << 5) - h + str.charCodeAt(i);
-    h |= 0;
-  }
-  return Math.abs(h);
-}
 
 function wrapText(text: string, maxChars: number): string[] {
   const words = text.split(" ");
@@ -60,69 +49,35 @@ export default function BookCover({
   const isUrl = seed.startsWith("http://") || seed.startsWith("https://") || seed.startsWith("/");
   if (isUrl && !isSecondary) {
     return (
-      <div className={`relative overflow-hidden bg-stone-50 rounded-xl shadow-md ring-1 ring-ink/10 ${className}`} style={{ aspectRatio: "1/1" }}>
+      <div className={`relative overflow-hidden bg-stone-50 rounded-xl shadow-sm ring-1 ring-black/5 ${className}`} style={{ aspectRatio: "1/1" }}>
         <Image
           src={seed}
-          alt={`Cover of ${title} by ${author}`}
+          alt={title}
           fill
           sizes={sizes}
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
-        {/* spine shadow overlay */}
-        <div className="absolute top-0 left-0 w-[10px] h-full bg-black/10 pointer-events-none" />
       </div>
     );
   }
 
-  const displaySeed = isUrl ? `${title}-${author}-alt` : seed;
-  const palette = PALETTES[genre] ?? PALETTES.Notebooks;
-  const variant = isSecondary ? (hashCode(displaySeed) + 1) % 4 : hashCode(displaySeed) % 4;
-  const titleLines = wrapText(title, 14);
+  const palette = PALETTES[genre] ?? { bg: "#f0f9ff", fg: "#0284c7" };
+  const titleLines = wrapText(title, 16);
 
   return (
     <svg
       viewBox="0 0 240 240"
-      className={`rounded-xl transition-transform duration-500 group-hover:scale-105 ${className}`}
+      className={`rounded-xl shadow-sm ring-1 ring-black/5 transition-transform duration-500 group-hover:scale-105 ${className}`}
       role="img"
-      aria-label={`Cover of ${title} by ${author}`}
+      aria-label={title}
       style={{ aspectRatio: "1/1" }}
     >
       <rect width="240" height="240" fill={palette.bg} />
-      {/* paper grain */}
-      <rect width="240" height="240" fill="url(#grain)" opacity="0.5" />
-      <defs>
-        <pattern id="grain" width="3" height="3" patternUnits="userSpaceOnUse">
-          <rect width="3" height="3" fill="transparent" />
-          <circle cx="1" cy="1" r="0.4" fill="#000" opacity="0.04" />
-        </pattern>
-      </defs>
-
-      {/* spine shadow */}
-      <rect width="10" height="240" fill="#000" opacity="0.18" />
-
-      {variant === 0 && (
-        <>
-          <line x1="24" y1="40" x2="216" y2="40" stroke={palette.band} strokeWidth="2" />
-          <line x1="24" y1="200" x2="216" y2="200" stroke={palette.band} strokeWidth="2" />
-        </>
-      )}
-      {variant === 1 && (
-        <circle
-          cx="120"
-          cy="70"
-          r="24"
-          fill="none"
-          stroke={palette.band}
-          strokeWidth="2"
-          opacity="0.8"
-        />
-      )}
-      {variant === 2 && (
-        <line x1="20" y1="30" x2="20" y2="210" stroke={palette.band} strokeWidth="3" />
-      )}
-      {variant === 3 && (
-        <polygon points="0,240 50,240 0,190" fill={palette.band} opacity="0.85" />
-      )}
+      
+      {/* Medical Cross Background Pattern */}
+      <path d="M110,40 h20 v30 h30 v20 h-30 v30 h-20 v-30 h-30 v-20 h30 z" fill={palette.fg} opacity="0.05" />
+      <path d="M30,150 h10 v15 h15 v10 h-15 v15 h-10 v-15 h-15 v-10 h15 z" fill={palette.fg} opacity="0.05" />
+      <path d="M180,180 h15 v20 h20 v15 h-20 v20 h-15 v-20 h-20 v-15 h20 z" fill={palette.fg} opacity="0.05" />
 
       {/* title */}
       <text
@@ -130,43 +85,31 @@ export default function BookCover({
         y={120 - (titleLines.length - 1) * 12}
         textAnchor="middle"
         fill={palette.fg}
-        fontFamily="var(--font-display)"
-        fontWeight={600}
-        fontSize="17"
+        fontFamily="sans-serif"
+        fontWeight={700}
+        fontSize="16"
       >
         {titleLines.map((line, i) => (
-          <tspan key={i} x="120" dy={i === 0 ? 0 : 20}>
+          <tspan key={i} x="120" dy={i === 0 ? 0 : 22}>
             {line}
           </tspan>
         ))}
       </text>
 
-      {/* author */}
+      {/* generic/brand text */}
       <text
         x="120"
         y="215"
         textAnchor="middle"
         fill={palette.fg}
-        opacity="0.85"
-        fontFamily="var(--font-stamp)"
+        opacity="0.7"
+        fontFamily="sans-serif"
+        fontWeight={600}
         fontSize="10"
-        letterSpacing="0.5"
+        letterSpacing="1"
       >
-        {author.toUpperCase()}
+        CAREFIRST PHARMACY
       </text>
-
-      {/* signature corner bite */}
-      <path
-        d={`M${228 - (hashCode(seed + "b") % 6)},0 A10,10 0 0 1 240,12 V0 Z`}
-        fill="var(--color-parchment)"
-      />
-      <circle
-        cx={233 - (hashCode(seed + "c") % 4)}
-        cy={7 - (hashCode(seed + "d") % 3)}
-        r="4.5"
-        fill="var(--color-charcoal)"
-        opacity="0.5"
-      />
     </svg>
   );
 }

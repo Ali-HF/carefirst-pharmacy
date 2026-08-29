@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Shipping Info | Notebloom",
-  description: "Shipping Information for Notebloom Stationery",
+  title: "Shipping Info | Carefirst Pharmacy",
+  description: "Shipping Information for Carefirst Pharmacy Stationery",
 };
 
 export default function ShippingInfoPage() {
@@ -11,7 +11,7 @@ export default function ShippingInfoPage() {
       {/* Navigation */}
       <nav className="p-4 sm:p-6 lg:p-8 flex items-center justify-between sticky top-0 bg-cream/90 backdrop-blur-md z-50 border-b border-ink/10">
         <Link href="/" className="font-bold text-xl sm:text-2xl text-ink tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-          NOTEBLOOM
+          CAREFIRST PHARMACY
         </Link>
         <Link href="/" className="text-sm font-semibold tracking-wider text-ink hover:text-oxblood transition-colors" style={{ fontFamily: "var(--font-stamp)" }}>
           RETURN HOME
@@ -25,7 +25,7 @@ export default function ShippingInfoPage() {
 
         <div className="prose prose-stone prose-a:text-oxblood prose-headings:font-display prose-headings:text-ink text-ink-soft max-w-none">
           <p>
-            At Notebloom, we aim to get your stationery to you as quickly and safely as possible. Here is everything you need to know about our shipping policies.
+            At Carefirst Pharmacy, we aim to get your stationery to you as quickly and safely as possible. Here is everything you need to know about our shipping policies.
           </p>
 
           <h2 className="text-2xl font-bold mt-10 mb-4 text-ink">1. Processing Time</h2>
@@ -59,7 +59,7 @@ export default function ShippingInfoPage() {
             We accept returns up to 30 days after delivery, if the item is unused and in its original condition, and we will refund the full order amount minus the shipping costs for the return. 
           </p>
           <p>
-            In the event that your order arrives damaged in any way, please email us as soon as possible at <strong>notebloom50@gmail.com</strong> with your order number and a photo of the item’s condition. We address these on a case-by-case basis but will try our best to work towards a satisfactory solution.
+            In the event that your order arrives damaged in any way, please email us as soon as possible at <strong>care@carefirst.pk</strong> with your order number and a photo of the item’s condition. We address these on a case-by-case basis but will try our best to work towards a satisfactory solution.
           </p>
         </div>
       </main>

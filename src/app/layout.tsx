@@ -10,9 +10,9 @@ import { CSPostHogProvider, PostHogPageview } from "./providers";
 import { Suspense } from "react";
 
 export const metadata: Metadata = {
-  title: "Notebloom — Aesthetic Korean stationery, journals, and pens",
+  title: "Carefirst Pharmacy — Your Trusted Healthcare Partner",
   description:
-    "An independent online shop for aesthetic stationery, journals, planners, and pens. Beautiful tools to hold your thoughts, sketch ideas, and organize your day.",
+    "Order authentic medicines, vitamins, and healthcare products online with Carefirst Pharmacy. Fast delivery and exceptional service.",
 };
 
 export const viewport = {

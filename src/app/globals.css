@@ -2,12 +2,12 @@
 @import "@fontsource-variable/inter/index.css";
 
 @theme {
-  /* -- the carefirst palette -- */
-  --color-primary: #00829B;
-  --color-primary-dark: #006A80;
-  --color-primary-light: #e6f7fa;
-  --color-accent: #f97316; /* Orange for urgent/discounts */
-  --color-accent-dark: #ea580c;
+  /* -- the carefirst corporate orange palette -- */
+  --color-primary: #f97316; /* Corporate Orange */
+  --color-primary-dark: #ea580c;
+  --color-primary-light: #fff7ed;
+  --color-accent: #111827; /* Corporate Dark Gray */
+  --color-accent-dark: #000000;
   --color-background: #f9fafb;
   --color-surface: #ffffff;
   --color-text: #1f2937;
@@ -16,7 +16,6 @@
 
   --font-display: "Inter Variable", "Inter", sans-serif;
   --font-body: "Inter Variable", "Inter", sans-serif;
-  --font-stamp: "Space Mono", "Courier New", monospace;
 }
 
 html {
@@ -90,7 +89,7 @@ body {
   position: absolute;
   border-radius: 50%;
   transform: scale(0);
-  background-color: rgba(0, 130, 155, 0.25);
+  background-color: rgba(249, 115, 22, 0.25);
   pointer-events: none;
   animation: mobile-ripple 0.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
 }
@@ -141,7 +140,7 @@ button.btn-loading::after, a.btn-loading::after {
   background: var(--color-primary);
   z-index: 10001;
   transition: width 0.25s ease, opacity 0.4s ease;
-  box-shadow: 0 0 10px rgba(0, 130, 155, 0.6);
+  box-shadow: 0 0 10px rgba(249, 115, 22, 0.6);
   pointer-events: none;
 }
 
@@ -194,4 +193,28 @@ button.btn-loading::after, a.btn-loading::after {
   .mobile-overlay, .mobile-drawer, .mobile-menu-btn {
     display: none !important;
   }
+}
+
+/* ─── Banner Animations ─────────────────────────────────────────────────── */
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  white-space: nowrap;
+  animation: marquee 25s linear infinite;
+  width: max-content;
+}
+
+@keyframes pan {
+  0% { transform: scale(1.05) translate(0, 0); }
+  50% { transform: scale(1.05) translate(-1%, 1%); }
+  100% { transform: scale(1.05) translate(0, 0); }
+}
+
+.animate-pan {
+  animation: pan 15s ease-in-out infinite;
 }

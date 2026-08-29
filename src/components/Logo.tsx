@@ -9,21 +9,13 @@ export default function Logo({ tagline = false }: { tagline?: boolean }) {
     >
       <div className="relative h-16 w-48 sm:h-24 sm:w-72 shrink-0 -my-3 sm:-my-7">
         <Image
-          src="/logo-transparent.png"
-          alt="Notebloom Logo"
+          src="/logo.jpg"
+          alt="Carefirst Pharmacy Logo"
           fill
           priority
           className="object-contain object-left scale-145 sm:scale-155 origin-left"
         />
       </div>
-      {tagline && (
-        <span
-          className="text-[10px] tracking-[0.18em] uppercase text-ink-soft mt-1"
-          style={{ fontFamily: "var(--font-stamp)" }}
-        >
-          Ideas in full bloom
-        </span>
-      )}
     </Link>
   );
 }

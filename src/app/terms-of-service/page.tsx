@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Terms of Service | Notebloom",
-  description: "Terms of Service for Notebloom Stationery",
+  title: "Terms of Service | Carefirst Pharmacy",
+  description: "Terms of Service for Carefirst Pharmacy Stationery",
 };
 
 export default function TermsOfServicePage() {
@@ -11,7 +11,7 @@ export default function TermsOfServicePage() {
       {/* Navigation */}
       <nav className="p-4 sm:p-6 lg:p-8 flex items-center justify-between sticky top-0 bg-cream/90 backdrop-blur-md z-50 border-b border-ink/10">
         <Link href="/" className="font-bold text-xl sm:text-2xl text-ink tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-          NOTEBLOOM
+          CAREFIRST PHARMACY
         </Link>
         <Link href="/" className="text-sm font-semibold tracking-wider text-ink hover:text-oxblood transition-colors" style={{ fontFamily: "var(--font-stamp)" }}>
           RETURN HOME
@@ -27,7 +27,7 @@ export default function TermsOfServicePage() {
           <p><strong>Effective Date:</strong> August 2026</p>
 
           <p>
-            Welcome to Notebloom ("we", "our", or "us"). By accessing or using our website (notebloom.shop) and purchasing our products, you agree to be bound by the following Terms of Service. Please read them carefully.
+            Welcome to Carefirst Pharmacy ("we", "our", or "us"). By accessing or using our website (carefirst.pk) and purchasing our products, you agree to be bound by the following Terms of Service. Please read them carefully.
           </p>
 
           <h2 className="text-2xl font-bold mt-10 mb-4 text-ink">1. Acceptance of Terms</h2>
@@ -47,7 +47,7 @@ export default function TermsOfServicePage() {
 
           <h2 className="text-2xl font-bold mt-10 mb-4 text-ink">4. Intellectual Property</h2>
           <p>
-            All content included on this site, such as text, graphics, logos, images, and software, is the property of Notebloom or its content suppliers and protected by international copyright laws.
+            All content included on this site, such as text, graphics, logos, images, and software, is the property of Carefirst Pharmacy or its content suppliers and protected by international copyright laws.
           </p>
 
           <h2 className="text-2xl font-bold mt-10 mb-4 text-ink">5. Disclaimer of Warranties; Limitation of Liability</h2>
@@ -55,7 +55,7 @@ export default function TermsOfServicePage() {
             We do not guarantee, represent or warrant that your use of our service will be uninterrupted, timely, secure, or error-free. You expressly agree that your use of, or inability to use, the service is at your sole risk.
           </p>
           <p>
-            In no case shall Notebloom, our directors, officers, employees, affiliates, agents, contractors, or licensors be liable for any injury, loss, claim, or any direct, indirect, incidental, punitive, special, or consequential damages of any kind arising from your use of any of the service or any products procured using the service.
+            In no case shall Carefirst Pharmacy, our directors, officers, employees, affiliates, agents, contractors, or licensors be liable for any injury, loss, claim, or any direct, indirect, incidental, punitive, special, or consequential damages of any kind arising from your use of any of the service or any products procured using the service.
           </p>
 
           <h2 className="text-2xl font-bold mt-10 mb-4 text-ink">6. Changes to Terms of Service</h2>
@@ -65,7 +65,7 @@ export default function TermsOfServicePage() {
 
           <h2 className="text-2xl font-bold mt-10 mb-4 text-ink">7. Contact Information</h2>
           <p>
-            Questions about the Terms of Service should be sent to us at <strong>notebloom50@gmail.com</strong>.
+            Questions about the Terms of Service should be sent to us at <strong>care@carefirst.pk</strong>.
           </p>
         </div>
       </main>

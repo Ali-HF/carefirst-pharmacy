@@ -1,9 +1,9 @@
 export const GENRES = [
-  "Diaries",
-  "School essentials",
-  "Pens",
-  "Fans",
-  "Calculators",
-  "Highlighters",
+  "Medicine",
+  "Vitamins",
+  "Personal Care",
+  "Baby & Mother",
+  "Devices",
+  "Herbal",
 ] as const;
 

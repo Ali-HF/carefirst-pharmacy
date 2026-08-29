@@ -76,7 +76,7 @@ export type Review = {
 // ---------- connection (singleton across dev hot-reloads) ----------
 
 declare global {
-  var __notebloomSql: postgres.Sql | undefined;
+  var __carefirstSql: postgres.Sql | undefined;
 }
 
 const connectionString = process.env.DATABASE_URL || "";
@@ -103,9 +103,9 @@ function createSqlInstance(): postgres.Sql {
   return postgres(connectionString, { ssl: "require", prepare: false });
 }
 
-export const sql = globalThis.__notebloomSql ?? createSqlInstance();
+export const sql = globalThis.__carefirstSql ?? createSqlInstance();
 if (process.env.NODE_ENV !== "production") {
-  globalThis.__notebloomSql = sql;
+  globalThis.__carefirstSql = sql;
 }
 
 // ---------- seed ----------
@@ -216,13 +216,13 @@ export async function seedIfEmpty() {
 
 
     // Always ensure the demo admin account is seeded
-    const adminExists = await sql`SELECT id FROM users WHERE email = 'admin@notebloom.shop'`;
+    const adminExists = await sql`SELECT id FROM users WHERE email = 'admin@carefirst.shop'`;
     if (adminExists.length === 0) {
       console.log("Seeding demo admin account...");
-      const adminHash = bcrypt.hashSync("notebloom123", 10);
+      const adminHash = bcrypt.hashSync("carefirst123", 10);
       await sql`
         INSERT INTO users (name, email, password_hash, is_admin)
-        VALUES ('Notebloom Admin', 'admin@notebloom.shop', ${adminHash}, 1)
+        VALUES ('Carefirst Pharmacy Admin', 'admin@carefirst.shop', ${adminHash}, 1)
         ON CONFLICT (email) DO NOTHING
       `;
       console.log("Demo admin account seeded.");

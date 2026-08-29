@@ -481,7 +481,7 @@ export default function CheckoutClient({
           <div className="relative h-20 w-64 shrink-0 -my-5">
             <Image
               src="/logo-transparent.png"
-              alt="Notebloom Logo"
+              alt="Carefirst Pharmacy Logo"
               fill
               priority
               className="object-contain scale-145 origin-center"
@@ -853,12 +853,12 @@ export default function CheckoutClient({
           <div className="relative h-7 w-28 shrink-0 mb-1">
             <Image
               src="/logo-transparent.png"
-              alt="Notebloom Logo"
+              alt="Carefirst Pharmacy Logo"
               fill
               className="object-contain"
             />
           </div>
-          <div style={s.footerSub}>© 2026 Notebloom Stationery. Crafted for focus.</div>
+          <div style={s.footerSub}>© 2026 Carefirst Pharmacy Stationery. Crafted for focus.</div>
         </div>
         <div style={s.footerLinks}>
           {[

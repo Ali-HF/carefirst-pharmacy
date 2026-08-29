@@ -1,6 +1,6 @@
 import crypto from "crypto";
 
-const SECRET = process.env.AUTH_SECRET || "notebloom-secure-default-key-2026";
+const SECRET = process.env.AUTH_SECRET || "carefirst-secure-default-key-2026";
 
 /**
  * Computes an HMAC-SHA256 token for guest order access cookies.

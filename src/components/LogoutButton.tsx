@@ -5,7 +5,7 @@ import { logoutAction } from "@/app/actions/auth-actions";
 
 export default function LogoutButton({ className }: { className?: string }) {
   const handleLogout = () => {
-    sessionStorage.removeItem("notebloom_admin_tab_session");
+    sessionStorage.removeItem("carefirst_admin_tab_session");
   };
 
   return (

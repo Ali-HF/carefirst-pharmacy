@@ -13,7 +13,7 @@ export default function BookCard({ book }: { book: Book & { rating_avg?: number;
   const inStock = stock > 0;
   
   return (
-    <div className="group flex flex-col h-full bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-primary hover:shadow-lg transition-all duration-300">
+    <div className="group flex flex-col h-full bg-white border border-gray-200 rounded-md overflow-hidden hover:border-primary hover:shadow-lg transition-all duration-300">
       <Link href={`/shop/${book.id}`} className="block relative p-4 flex-shrink-0 bg-white">
         {stock < 5 && stock > 0 && (
           <span className="absolute top-2 left-2 bg-orange-100 text-orange-700 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider z-10">
@@ -26,7 +26,7 @@ export default function BookCard({ book }: { book: Book & { rating_avg?: number;
           </span>
         )}
         
-        <div className="aspect-[4/5] relative flex items-center justify-center overflow-hidden rounded-lg">
+        <div className="aspect-[4/5] relative flex items-center justify-center overflow-hidden rounded-md">
           <div className="w-full h-full relative group-hover:scale-105 transition-transform duration-300 shadow-sm">
              <BookCover
               title={book.title}
@@ -60,12 +60,12 @@ export default function BookCard({ book }: { book: Book & { rating_avg?: number;
               <AddToCartButton
                 bookId={book.id}
                 bookTitle={title}
-                className="bg-primary/10 hover:bg-primary text-primary hover:text-white p-2.5 rounded-full transition-colors flex items-center justify-center border-none shadow-none"
+                className="bg-primary hover:bg-primary-dark text-white p-2.5 rounded-md transition-colors flex items-center justify-center border border-transparent shadow-sm"
               >
                 <ShoppingCart className="w-5 h-5" />
               </AddToCartButton>
             ) : (
-              <button disabled className="bg-gray-100 text-gray-400 p-2.5 rounded-full flex items-center justify-center border-none shadow-none cursor-not-allowed">
+              <button disabled className="bg-gray-100 text-gray-400 p-2.5 rounded-md flex items-center justify-center border-none shadow-none cursor-not-allowed">
                 <ShoppingCart className="w-5 h-5" />
               </button>
             )}

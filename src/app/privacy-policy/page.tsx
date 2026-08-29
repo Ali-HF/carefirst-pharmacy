@@ -1,8 +1,8 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Privacy Policy | Notebloom",
-  description: "Privacy Policy for Notebloom Stationery",
+  title: "Privacy Policy | Carefirst Pharmacy",
+  description: "Privacy Policy for Carefirst Pharmacy Stationery",
 };
 
 export default function PrivacyPolicyPage() {
@@ -11,7 +11,7 @@ export default function PrivacyPolicyPage() {
       {/* Navigation */}
       <nav className="p-4 sm:p-6 lg:p-8 flex items-center justify-between sticky top-0 bg-cream/90 backdrop-blur-md z-50 border-b border-ink/10">
         <Link href="/" className="font-bold text-xl sm:text-2xl text-ink tracking-tight" style={{ fontFamily: "var(--font-display)" }}>
-          NOTEBLOOM
+          CAREFIRST PHARMACY
         </Link>
         <Link href="/" className="text-sm font-semibold tracking-wider text-ink hover:text-oxblood transition-colors" style={{ fontFamily: "var(--font-stamp)" }}>
           RETURN HOME
@@ -27,7 +27,7 @@ export default function PrivacyPolicyPage() {
           <p><strong>Effective Date:</strong> August 2026</p>
 
           <p>
-            At Notebloom ("we", "our", or "us"), we respect your privacy and are committed to protecting the personal information you share with us. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website (notebloom.shop) or make a purchase.
+            At Carefirst Pharmacy ("we", "our", or "us"), we respect your privacy and are committed to protecting the personal information you share with us. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website (carefirst.pk) or make a purchase.
           </p>
 
           <h2 className="text-2xl font-bold mt-10 mb-4 text-ink">1. Information We Collect</h2>
@@ -54,7 +54,7 @@ export default function PrivacyPolicyPage() {
 
           <h2 className="text-2xl font-bold mt-10 mb-4 text-ink">3. Third-Party Services and Tracking</h2>
           <p>
-            Notebloom respects your digital privacy. We <strong>do not</strong> use third-party tracking analytics (such as Google Analytics), we do not run third-party advertisements on our site, and we do not use retargeting pixels (such as the Facebook Pixel). 
+            Carefirst Pharmacy respects your digital privacy. We <strong>do not</strong> use third-party tracking analytics (such as Google Analytics), we do not run third-party advertisements on our site, and we do not use retargeting pixels (such as the Facebook Pixel). 
           </p>
           <p>
             We only share your information with trusted third-party service providers necessary to fulfill our services (such as our payment processor and shipping partners). These third parties are strictly prohibited from using your personal information for any other purposes.
@@ -72,7 +72,7 @@ export default function PrivacyPolicyPage() {
 
           <h2 className="text-2xl font-bold mt-10 mb-4 text-ink">6. Contact Us</h2>
           <p>
-            If you have any questions about this Privacy Policy, please contact us at <strong>notebloom50@gmail.com</strong>.
+            If you have any questions about this Privacy Policy, please contact us at <strong>care@carefirst.pk</strong>.
           </p>
         </div>
       </main>

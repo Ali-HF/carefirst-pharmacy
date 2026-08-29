@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const envSchema = z.object({
   DATABASE_URL: z.string().optional().default(""),
-  AUTH_SECRET: z.string().optional().default("notebloom-default-secret"),
+  AUTH_SECRET: z.string().optional().default("carefirst-default-secret"),
   TWILIO_AUTH_TOKEN: z.string().optional(),
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
 });
@@ -18,7 +18,7 @@ if (!_env.success) {
 
 export const env = _env.success ? _env.data : {
   DATABASE_URL: process.env.DATABASE_URL || "",
-  AUTH_SECRET: process.env.AUTH_SECRET || "notebloom-default-secret",
+  AUTH_SECRET: process.env.AUTH_SECRET || "carefirst-default-secret",
   TWILIO_AUTH_TOKEN: process.env.TWILIO_AUTH_TOKEN,
   NODE_ENV: "development" as const,
 };

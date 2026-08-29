@@ -1,5 +1,5 @@
 /**
- * Delivery pricing utility for Notebloom.
+ * Delivery pricing utility for Carefirst Pharmacy.
  * Shipping origin: Karachi, Pakistan.
  *
  * Rates are tiered by total cart weight and destination city.

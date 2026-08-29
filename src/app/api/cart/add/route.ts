@@ -23,7 +23,7 @@ export async function POST(request: Request) {
       capped = res.capped;
     } else {
       const cookieStore = await cookies();
-      const cartCookie = cookieStore.get("notebloom_cart")?.value;
+      const cartCookie = cookieStore.get("carefirst_cart")?.value;
       let cart: Array<{ book_id: number; quantity: number; color?: string | null }> = [];
       if (cartCookie) {
         try {
@@ -72,7 +72,7 @@ export async function POST(request: Request) {
             cart.push({ book_id: bookId, quantity: addedQty, color: cleanColor });
           }
         }
-        cookieStore.set("notebloom_cart", JSON.stringify(cart), { maxAge: 86400 * 30, path: "/" });
+        cookieStore.set("carefirst_cart", JSON.stringify(cart), { maxAge: 86400 * 30, path: "/" });
       }
     }
 

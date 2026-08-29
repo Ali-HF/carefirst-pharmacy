@@ -18,7 +18,7 @@ export default async function CheckoutPage() {
   } else {
     try {
       const cookieStore = await cookies();
-      const cartCookie = cookieStore.get("notebloom_cart")?.value;
+      const cartCookie = cookieStore.get("carefirst_cart")?.value;
       if (cartCookie) {
         const parsed = JSON.parse(cartCookie);
         if (Array.isArray(parsed) && parsed.length > 0) {

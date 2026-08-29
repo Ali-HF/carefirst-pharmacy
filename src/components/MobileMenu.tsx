@@ -67,7 +67,7 @@ export default function MobileMenu({ session, count = 0 }: MobileMenuProps) {
               <input
                 name="q"
                 type="search"
-                placeholder="Search notebooks, pens, washi..."
+                placeholder="Search medicines, vitamins, devices..."
                 className="w-full rounded-full border border-ink/20 bg-[#ede4d3] px-4 py-2 text-sm text-ink
                            placeholder:text-ink-soft/70 focus:border-oxblood focus:outline-none transition-colors"
               />
@@ -120,14 +120,14 @@ export default function MobileMenu({ session, count = 0 }: MobileMenuProps) {
               <div className="space-y-3 font-sans">
                 <div>
                   <span className="text-[9px] uppercase tracking-wider block font-bold text-ink-soft/50" style={{ fontFamily: "var(--font-stamp)" }}>PHONE</span>
-                  <a href="tel:03373876846" className="text-oxblood font-semibold hover:underline block text-[13px]">
-                    03373876846
+                  <a href="tel:111-222-333" className="text-oxblood font-semibold hover:underline block text-[13px]">
+                    111-222-333
                   </a>
                 </div>
                 <div>
                   <span className="text-[9px] uppercase tracking-wider block font-bold text-ink-soft/50" style={{ fontFamily: "var(--font-stamp)" }}>EMAIL</span>
-                  <a href="mailto:notebloom50@gmail.com" className="text-oxblood font-semibold hover:underline block text-[13px]">
-                    notebloom50@gmail.com
+                  <a href="mailto:care@carefirst.pk" className="text-oxblood font-semibold hover:underline block text-[13px]">
+                    care@carefirst.pk
                   </a>
                 </div>
               </div>
@@ -138,7 +138,7 @@ export default function MobileMenu({ session, count = 0 }: MobileMenuProps) {
         {/* Log out — only if admin is logged in */}
         {session?.user?.isAdmin && (
           <div className="px-6 py-5 border-t border-ink/10 shrink-0">
-            <form action={logoutAction} onSubmit={() => sessionStorage.removeItem("notebloom_admin_tab_session")}>
+            <form action={logoutAction} onSubmit={() => sessionStorage.removeItem("carefirst_admin_tab_session")}>
               <button
                 type="submit"
                 className="w-full py-2.5 px-4 rounded-full border border-oxblood/30 text-oxblood

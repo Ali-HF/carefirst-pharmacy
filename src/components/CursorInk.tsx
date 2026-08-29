@@ -23,90 +23,79 @@ export default function CursorInk() {
   return null;
 }
 
-// ─── Click splatter ───────────────────────────────────────────────────────────
+// ─── Click pulse & medical crosses ───────────────────────────────────────────────────────────
 
 function spawnSplatter(cx: number, cy: number, registry: HTMLElement[]) {
-  const COLORS = [
-    "rgba(124, 47, 47, 0.75)",
-    "rgba(124, 47, 47, 0.50)",
-    "rgba(32, 40, 58, 0.65)",
-    "rgba(78, 38, 42, 0.55)",
-  ];
-
-  const center = document.createElement("div");
-  Object.assign(center.style, {
+  // 1. Center Pulse
+  const pulse = document.createElement("div");
+  Object.assign(pulse.style, {
     position: "fixed",
     left: cx + "px",
     top: cy + "px",
-    width: "14px",
-    height: "14px",
-    borderRadius: "55% 45% 52% 48% / 48% 56% 44% 52%",
-    background: COLORS[0],
+    width: "24px",
+    height: "24px",
+    borderRadius: "50%",
+    border: "2px solid rgba(249, 115, 22, 0.6)",
+    background: "rgba(249, 115, 22, 0.15)",
     pointerEvents: "none",
     zIndex: "10000",
     transform: "translate(-50%,-50%) scale(0)",
-    mixBlendMode: "multiply",
   });
-  document.body.appendChild(center);
-  registry.push(center);
-  center.animate(
+  document.body.appendChild(pulse);
+  registry.push(pulse);
+  pulse.animate(
     [
-      { transform: "translate(-50%,-50%) scale(0)", opacity: "1" },
-      { transform: "translate(-50%,-50%) scale(1.8)", opacity: "0.5", offset: 0.4 },
-      { transform: "translate(-50%,-50%) scale(1.4)", opacity: "0" },
+      { transform: "translate(-50%,-50%) scale(0.5)", opacity: "1" },
+      { transform: "translate(-50%,-50%) scale(2.5)", opacity: "0" },
     ],
-    { duration: 400, easing: "ease-out", fill: "forwards" }
+    { duration: 500, easing: "ease-out", fill: "forwards" }
   ).onfinish = () => {
-    center.remove();
-    const i = registry.indexOf(center);
+    pulse.remove();
+    const i = registry.indexOf(pulse);
     if (i !== -1) registry.splice(i, 1);
   };
 
-  const count = 5 + Math.floor(Math.random() * 3);
+  // 2. Floating Medical Crosses (+)
+  const count = 3 + Math.floor(Math.random() * 2);
   for (let d = 0; d < count; d++) {
-    const angle = (Math.PI * 2 * d) / count + (Math.random() - 0.5) * 1.0;
-    const dist = 18 + Math.random() * 26;
-    const size = 3 + Math.random() * 5;
-    const dur = 340 + Math.random() * 160;
+    const angle = (Math.PI * 2 * d) / count + (Math.random() - 0.5);
+    const dist = 15 + Math.random() * 20;
+    const dur = 400 + Math.random() * 200;
     const ex = Math.cos(angle) * dist;
-    const ey = Math.sin(angle) * dist + Math.random() * 8;
-    const rot = Math.random() * 360;
-    const br = `${44 + Math.random() * 18}% ${44 + Math.random() * 18}% ${44 + Math.random() * 18}% ${44 + Math.random() * 18}%`;
-    const color = COLORS[Math.floor(Math.random() * COLORS.length)];
+    const ey = Math.sin(angle) * dist - (10 + Math.random() * 15); // Float upwards
+    const rot = (Math.random() - 0.5) * 90;
+    const size = 12 + Math.random() * 6;
 
-    const drop = document.createElement("div");
-    Object.assign(drop.style, {
+    const cross = document.createElement("div");
+    cross.textContent = "+";
+    Object.assign(cross.style, {
       position: "fixed",
       left: cx + "px",
       top: cy + "px",
-      width: size + "px",
-      height: size + "px",
-      borderRadius: br,
-      background: color,
+      fontSize: size + "px",
+      fontWeight: "bold",
+      color: "rgba(249, 115, 22, 0.8)",
       pointerEvents: "none",
       zIndex: "10000",
-      transform: `translate(-50%,-50%) rotate(${rot}deg) scale(0.3)`,
-      mixBlendMode: "multiply",
+      transform: `translate(-50%,-50%) rotate(${rot}deg)`,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
     });
-    document.body.appendChild(drop);
-    registry.push(drop);
-    drop.animate(
+    document.body.appendChild(cross);
+    registry.push(cross);
+    cross.animate(
       [
-        { transform: `translate(-50%,-50%) rotate(${rot}deg) scale(0.3)`, opacity: "1" },
+        { transform: `translate(-50%,-50%) rotate(${rot}deg) scale(0.5)`, opacity: "1" },
         {
-          transform: `translate(calc(-50% + ${ex * 0.55}px), calc(-50% + ${ey * 0.55}px)) rotate(${rot + 25}deg) scale(1)`,
-          opacity: "0.8",
-          offset: 0.35,
-        },
-        {
-          transform: `translate(calc(-50% + ${ex}px), calc(-50% + ${ey}px)) rotate(${rot + 50}deg) scale(0.4)`,
+          transform: `translate(calc(-50% + ${ex}px), calc(-50% + ${ey}px)) rotate(${rot}deg) scale(1.2)`,
           opacity: "0",
         },
       ],
-      { duration: dur, delay: Math.random() * 30, easing: "cubic-bezier(.25,.46,.45,.94)", fill: "forwards" }
+      { duration: dur, easing: "cubic-bezier(.25,.46,.45,.94)", fill: "forwards" }
     ).onfinish = () => {
-      drop.remove();
-      const i = registry.indexOf(drop);
+      cross.remove();
+      const i = registry.indexOf(cross);
       if (i !== -1) registry.splice(i, 1);
     };
   }

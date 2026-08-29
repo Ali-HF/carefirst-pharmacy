@@ -52,12 +52,12 @@ export default async function OrderReceiptPage({
             className="text-2xl tracking-tight text-ink font-semibold"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            Notebloom
+            Carefirst Pharmacy
           </h1>
           <p className="text-[10px] tracking-[0.18em] uppercase text-ink-soft mt-1" style={{ fontFamily: "var(--font-stamp)" }}>
             Aesthetic Stationery & Journals
           </p>
-          <p className="text-xs text-ink-soft/75 mt-1.5">North Nazimabad, Karachi · notebloom50@gmail.com</p>
+          <p className="text-xs text-ink-soft/75 mt-1.5">North Nazimabad, Karachi · care@carefirst.pk</p>
         </div>
 
         <div className="grid grid-cols-2 gap-4 text-sm mb-6 pb-6 border-b border-ink/10">
@@ -191,7 +191,7 @@ export default async function OrderReceiptPage({
         </div>
 
         <div className="text-center mt-12 text-xs text-ink-soft/70 border-t border-ink/10 pt-4">
-          <p>Thank you for buying from Notebloom!</p>
+          <p>Thank you for buying from Carefirst Pharmacy!</p>
           <p className="mt-1">Please retain this invoice as proof of purchase.</p>
         </div>
       </div>

@@ -24,7 +24,7 @@ export async function POST(request: Request) {
       await updateCartItemColor(Number(session.user.id), bookId, cleanOldColor, cleanNewColor, cleanQty);
     } else {
       const cookieStore = await cookies();
-      const cartCookie = cookieStore.get("notebloom_cart")?.value;
+      const cartCookie = cookieStore.get("carefirst_cart")?.value;
       if (cartCookie) {
         try {
           const cart: Array<{ book_id: number; quantity: number; color?: string | null }> = JSON.parse(cartCookie);
@@ -46,7 +46,7 @@ export async function POST(request: Request) {
                 cart[existingIdx].color = cleanNewColor;
               }
               
-              cookieStore.set("notebloom_cart", JSON.stringify(cart), { maxAge: 86400 * 30, path: "/" });
+              cookieStore.set("carefirst_cart", JSON.stringify(cart), { maxAge: 86400 * 30, path: "/" });
             }
           }
         } catch (_e) {

@@ -5,8 +5,8 @@ import { type CartRow, type OrderItem } from "./db";
 
 export async function sendEmailNotification(to: string, subject: string, htmlContent: string): Promise<boolean> {
   const apiKey = process.env.BREVO_API_KEY;
-  const senderEmail = process.env.BREVO_SENDER_EMAIL || "notebloom@gmail.com";
-  const senderName = process.env.BREVO_SENDER_NAME || "Notebloom";
+  const senderEmail = process.env.BREVO_SENDER_EMAIL || "care@carefirst.pk";
+  const senderName = process.env.BREVO_SENDER_NAME || "Carefirst Pharmacy";
 
   if (!apiKey) {
     console.log("\n--- SIMULATED EMAIL (BREVO NOT CONFIGURED) ---");
@@ -52,7 +52,7 @@ export async function sendVerificationCodeEmail(to: string, code: string): Promi
     <html>
       <head>
         <meta charset="utf-8">
-        <title>Verify Your Notebloom Account</title>
+        <title>Verify Your Carefirst Pharmacy Account</title>
         <style>
           body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #faf8f5; color: #2e2926; margin: 0; padding: 0; }
           .container { max-width: 600px; margin: 40px auto; background: #ffffff; border: 1px solid #e5e0d8; border-radius: 8px; overflow: hidden; }
@@ -66,19 +66,19 @@ export async function sendVerificationCodeEmail(to: string, code: string): Promi
       </head>
       <body>
         <div class="container">
-          <div class="header"><span class="logo">~ notebloom ~</span></div>
+          <div class="header"><span class="logo">Carefirst Pharmacy</span></div>
           <div class="content">
             <h1>Verify your account</h1>
             <p>Thank you for signing up! Please use this verification code:</p>
             <div style="text-align:center;margin:30px 0;"><div class="code-box">${code}</div></div>
             <p>This code is valid for 1 hour.</p>
           </div>
-          <div class="footer">&copy; 2026 Notebloom. All rights reserved.</div>
+          <div class="footer">&copy; 2026 Carefirst Pharmacy. All rights reserved.</div>
         </div>
       </body>
     </html>
   `;
-  return sendEmailNotification(to, "Your Notebloom verification code", htmlContent);
+  return sendEmailNotification(to, "Your Carefirst Pharmacy verification code", htmlContent);
 }
 
 function getBaseUrl() {
@@ -114,7 +114,7 @@ export async function sendOrderConfirmationRequestEmail(
       .footer { background-color:#f5eff0; padding:20px; text-align:center; font-size:12px; color:#8c827a; border-top:1px solid #e5e0d8; }
     </style></head>
     <body><div class="container">
-      <div class="header"><span class="logo">~ notebloom ~</span></div>
+      <div class="header"><span class="logo">Carefirst Pharmacy</span></div>
       <div class="content">
         <h1 style="color:#591724;">Thank you for your order, ${customerName}!</h1>
         <p>We've received your order <strong>${orderCode}</strong>. Our team will call you shortly to confirm.</p>
@@ -132,10 +132,10 @@ export async function sendOrderConfirmationRequestEmail(
           </div>
         </div>
       </div>
-      <div class="footer">&copy; 2026 Notebloom. All rights reserved.</div>
+      <div class="footer">&copy; 2026 Carefirst Pharmacy. All rights reserved.</div>
     </div></body></html>`;
 
-  return sendEmailNotification(to, `Your Order ${orderCode} - Notebloom`, htmlContent);
+  return sendEmailNotification(to, `Your Order ${orderCode} - Carefirst Pharmacy`, htmlContent);
 }
 
 export async function sendOrderShippedEmail(
@@ -165,7 +165,7 @@ export async function sendOrderShippedEmail(
       .footer { background-color:#f5eff0; padding:20px; text-align:center; font-size:12px; color:#8c827a; border-top:1px solid #e5e0d8; }
     </style></head>
     <body><div class="container">
-      <div class="header"><span class="logo">~ notebloom ~</span></div>
+      <div class="header"><span class="logo">Carefirst Pharmacy</span></div>
       <div class="content">
         <h1 style="color:#591724;">Your order has shipped! 📦</h1>
         <p>Hi ${customerName}, your order <strong>${orderCode}</strong> is on its way!</p>
@@ -182,10 +182,10 @@ export async function sendOrderShippedEmail(
           </div>
         </div>
       </div>
-      <div class="footer">&copy; 2026 Notebloom. All rights reserved.</div>
+      <div class="footer">&copy; 2026 Carefirst Pharmacy. All rights reserved.</div>
     </div></body></html>`;
 
-  return sendEmailNotification(to, `Your Order ${orderCode} Has Shipped! 📦 - Notebloom`, htmlContent);
+  return sendEmailNotification(to, `Your Order ${orderCode} Has Shipped! 📦 - Carefirst Pharmacy`, htmlContent);
 }
 
 export async function sendOrderOutForDeliveryEmail(
@@ -215,7 +215,7 @@ export async function sendOrderOutForDeliveryEmail(
       .footer { background-color:#f5eff0; padding:20px; text-align:center; font-size:12px; color:#8c827a; border-top:1px solid #e5e0d8; }
     </style></head>
     <body><div class="container">
-      <div class="header"><span class="logo">~ notebloom ~</span></div>
+      <div class="header"><span class="logo">Carefirst Pharmacy</span></div>
       <div class="content">
         <h1 style="color:#591724;">Out for delivery! 🛵</h1>
         <p>Hi ${customerName}, your order <strong>${orderCode}</strong> is out for delivery and will arrive soon!</p>
@@ -232,10 +232,10 @@ export async function sendOrderOutForDeliveryEmail(
           </div>
         </div>
       </div>
-      <div class="footer">&copy; 2026 Notebloom. All rights reserved.</div>
+      <div class="footer">&copy; 2026 Carefirst Pharmacy. All rights reserved.</div>
     </div></body></html>`;
 
-  return sendEmailNotification(to, `Your Order ${orderCode} Is Out for Delivery! 🛵 - Notebloom`, htmlContent);
+  return sendEmailNotification(to, `Your Order ${orderCode} Is Out for Delivery! 🛵 - Carefirst Pharmacy`, htmlContent);
 }
 
 export async function sendOrderDeliveredEmail(
@@ -267,7 +267,7 @@ export async function sendOrderDeliveredEmail(
       .footer { background-color:#f5eff0; padding:20px; text-align:center; font-size:12px; color:#8c827a; border-top:1px solid #e5e0d8; }
     </style></head>
     <body><div class="container">
-      <div class="header"><span class="logo">~ notebloom ~</span></div>
+      <div class="header"><span class="logo">Carefirst Pharmacy</span></div>
       <div class="content">
         <h1 style="color:#591724;">Your package has arrived! 🎉</h1>
         <p>Hi ${customerName}, your order <strong>${orderCode}</strong> has been delivered. We hope you love it!</p>
@@ -275,12 +275,12 @@ export async function sendOrderDeliveredEmail(
           <div style="font-weight:bold;color:#591724;border-bottom:2px solid #e5e0d8;padding-bottom:8px;margin-bottom:15px;font-size:14px;text-transform:uppercase;letter-spacing:0.05em;">Share Your Feedback</div>
           ${itemsListHtml}
         </div>
-        <p style="margin-top:25px;">Thank you for shopping at Notebloom! 🌸</p>
+        <p style="margin-top:25px;">Thank you for shopping at Carefirst Pharmacy! 🌸</p>
       </div>
-      <div class="footer">&copy; 2026 Notebloom. All rights reserved.</div>
+      <div class="footer">&copy; 2026 Carefirst Pharmacy. All rights reserved.</div>
     </div></body></html>`;
 
-  return sendEmailNotification(to, `Order ${orderCode} Delivered! 🎉 - Notebloom`, htmlContent);
+  return sendEmailNotification(to, `Order ${orderCode} Delivered! 🎉 - Carefirst Pharmacy`, htmlContent);
 }
 
 export async function sendPasswordResetEmail(to: string, token: string): Promise<boolean> {
@@ -299,24 +299,24 @@ export async function sendPasswordResetEmail(to: string, token: string): Promise
       .footer { background-color:#f5eff0; padding:20px; text-align:center; font-size:13px; color:#8c827a; border-top:1px solid #e5e0d8; }
     </style></head>
     <body><div class="container">
-      <div class="header"><span class="logo">~ notebloom ~</span></div>
+      <div class="header"><span class="logo">Carefirst Pharmacy</span></div>
       <div class="content">
         <h1 style="color:#591724;">Reset your password</h1>
-        <p>Click below to reset your Notebloom password. This link is valid for 1 hour.</p>
+        <p>Click below to reset your Carefirst Pharmacy password. This link is valid for 1 hour.</p>
         <div style="text-align:center;margin:30px 0;">
           <a href="${resetUrl}" class="btn" style="color:#faf8f5;">Reset Password</a>
         </div>
         <p style="font-size:13px;color:#8c827a;">If you didn't request this, ignore this email.</p>
       </div>
-      <div class="footer">&copy; 2026 Notebloom. All rights reserved.</div>
+      <div class="footer">&copy; 2026 Carefirst Pharmacy. All rights reserved.</div>
     </div></body></html>`;
 
-  return sendEmailNotification(to, "Reset your Notebloom password", htmlContent);
+  return sendEmailNotification(to, "Reset your Carefirst Pharmacy password", htmlContent);
 }
 
 export async function sendLowStockAlert(productName: string, remainingStock: number): Promise<boolean> {
-  const adminEmail = process.env.BREVO_SENDER_EMAIL || "admin@notebloom.shop";
-  const baseUrl = process.env.NEXTAUTH_URL || "https://notebloom.shop";
+  const adminEmail = process.env.BREVO_SENDER_EMAIL || "admin@carefirst.pk";
+  const baseUrl = process.env.NEXTAUTH_URL || "https://carefirst.shop";
   const htmlContent = `<!DOCTYPE html><html><head><meta charset="utf-8">
     <style>
       body { font-family:sans-serif; background-color:#faf6ec; color:#221d18; padding:20px; }
@@ -345,7 +345,7 @@ export async function sendAdminOrderNotificationEmail(
   items: CartRow[], totalCents: number,
   shipping: { address: string; area: string; city: string; phone: string; email?: string }
 ): Promise<boolean> {
-  const adminEmail = process.env.BREVO_SENDER_EMAIL || "notebloom50@gmail.com";
+  const adminEmail = process.env.BREVO_SENDER_EMAIL || "carefirst50@gmail.com";
   const totalPKR = `PKR ${(totalCents / 100).toFixed(2)}`;
   const itemsListHtml = items.map((item) => `
     <div style="display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #f2ece4;">
@@ -365,7 +365,7 @@ export async function sendAdminOrderNotificationEmail(
       .footer { background-color:#f5eff0; padding:20px; text-align:center; font-size:12px; color:#8c827a; border-top:1px solid #e5e0d8; }
     </style></head>
     <body><div class="container">
-      <div class="header"><span class="logo">~ notebloom ~</span></div>
+      <div class="header"><span class="logo">~ carefirst ~</span></div>
       <div class="content">
         <h1 style="color:#591724;">New Order Received!</h1>
         <p>A new order <strong>${orderCode}</strong> has been placed by <strong>${customerName}</strong>.</p>
@@ -381,7 +381,7 @@ export async function sendAdminOrderNotificationEmail(
           </div>
         </div>
       </div>
-      <div class="footer">&copy; 2026 Notebloom. All rights reserved.</div>
+      <div class="footer">&copy; 2026 Carefirst Pharmacy. All rights reserved.</div>
     </div></body></html>`;
 
   return sendEmailNotification(adminEmail, `🔔 New Order Received: ${orderCode}`, htmlContent);

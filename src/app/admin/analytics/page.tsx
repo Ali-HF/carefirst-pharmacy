@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { auth } from "@/lib/auth";
 
 export const metadata = {
-  title: "Analytics - Admin | Notebloom",
+  title: "Analytics - Admin | Carefirst Pharmacy",
 };
 
 export default async function AnalyticsPage() {

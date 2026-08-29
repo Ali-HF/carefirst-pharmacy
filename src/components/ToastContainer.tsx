@@ -25,8 +25,8 @@ export default function ToastContainer() {
       }, 3500);
     };
 
-    window.addEventListener("notebloom-toast", handleToast);
-    return () => window.removeEventListener("notebloom-toast", handleToast);
+    window.addEventListener("carefirst-toast", handleToast);
+    return () => window.removeEventListener("carefirst-toast", handleToast);
   }, []);
 
   return (

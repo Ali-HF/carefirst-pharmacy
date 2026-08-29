@@ -47,8 +47,8 @@ export default function ContactButton() {
             </div>
             <div>
               <span className="text-[10px] uppercase tracking-wider block font-bold text-ink-soft/60" style={{ fontFamily: "var(--font-stamp)" }}>EMAIL</span>
-              <a href="mailto:notebloom50@gmail.com" className="text-oxblood font-semibold hover:underline block text-[13px]">
-                notebloom50@gmail.com
+              <a href="mailto:carefirst50@gmail.com" className="text-oxblood font-semibold hover:underline block text-[13px]">
+                carefirst50@gmail.com
               </a>
             </div>
           </div>

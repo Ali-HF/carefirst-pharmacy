@@ -8,6 +8,7 @@ import { cookies } from "next/headers";
 import MobileMenu from "./MobileMenu";
 import CartBadge from "./CartBadge";
 import { MapPin, Phone, Download, Search, User } from "lucide-react";
+import MarqueeBanner from "./MarqueeBanner";
 
 export default async function Header() {
   const session = await auth();
@@ -18,7 +19,7 @@ export default async function Header() {
   } else {
     try {
       const cookieStore = await cookies();
-      const cartCookie = cookieStore.get("notebloom_cart")?.value;
+      const cartCookie = cookieStore.get("carefirst_cart")?.value;
       if (cartCookie) {
         const parsed = JSON.parse(cartCookie);
         if (Array.isArray(parsed)) {
@@ -32,6 +33,7 @@ export default async function Header() {
 
   return (
     <header className="w-full flex flex-col relative z-40 bg-white">
+      <MarqueeBanner />
       {/* Top Utility Bar */}
       <div className="bg-gray-100 text-gray-500 py-1.5 text-xs">
         <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
@@ -74,12 +76,12 @@ export default async function Header() {
                 name="q"
                 type="search"
                 placeholder="Search for medicines, vitamins..."
-                className="w-full rounded-full border border-gray-300 bg-gray-50 pl-4 pr-12 py-2.5 text-sm
+                className="w-full rounded-md border border-gray-300 bg-gray-50 pl-4 pr-12 py-2.5 text-sm
                            focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
               />
               <button 
                 type="submit" 
-                className="absolute right-1 top-1/2 -translate-y-1/2 p-2 bg-primary text-white rounded-full hover:bg-primary-dark transition-colors"
+                className="absolute right-1 top-1/2 -translate-y-1/2 p-2 bg-primary text-white rounded-md hover:bg-primary-dark transition-colors"
                 aria-label="Search"
               >
                 <Search className="w-4 h-4" />
@@ -129,7 +131,7 @@ export default async function Header() {
             {["Medicine", "Vitamins", "Personal Care", "Devices", "Baby & Mother", "Herbal"].map(cat => (
               <li key={cat}>
                 <Link
-                  href={`/shop?category=${cat.toLowerCase()}`}
+                  href={`/shop?genre=${encodeURIComponent(cat)}`}
                   className="flex items-center py-3 text-sm font-medium hover:bg-primary-dark px-3 rounded-sm transition-colors"
                 >
                   {cat}

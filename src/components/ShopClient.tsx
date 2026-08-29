@@ -4,7 +4,8 @@ import { useState, useMemo, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import FilterBar from "./FilterBar";
 import BookCard from "./BookCard";
-import BloomMark from "./BloomMark";
+import HeroCarousel from "./HeroCarousel";
+import { SearchX } from "lucide-react";
 import type { Book } from "@/lib/types";
 
 type BookWithSales = Book & { sales?: number; rating_avg?: number; rating_count?: number };
@@ -117,13 +118,16 @@ export default function ShopClient({
         onSortChange={handleSortChange}
       />
 
+      {/* Hero Carousel - Show only on main page without search/genre filters */}
+      {!q && !genre && <HeroCarousel />}
+
       {/* Grid */}
       <div>
         {processedBooks.length === 0 ? (
           <div className="flex flex-col items-center text-center py-20 gap-4">
-            <BloomMark size={40} />
-            <p className="text-ink-soft max-w-sm">
-              Nothing blooming here. Try a different category or clear your search.
+            <SearchX className="w-12 h-12 text-primary/50" strokeWidth={1.5} />
+            <p className="text-gray-500 max-w-sm">
+              No products found. Try a different category or clear your search.
             </p>
             <button
               onClick={() => {

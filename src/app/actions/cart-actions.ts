@@ -27,7 +27,7 @@ export async function addToCartAction(bookId: number, qty: number = 1, color?: s
   } else {
     // Guest cart in cookies
     const cookieStore = await cookies();
-    const cartCookie = cookieStore.get("notebloom_cart")?.value;
+    const cartCookie = cookieStore.get("carefirst_cart")?.value;
     let cart: Array<{ book_id: number; quantity: number; color?: string | null }> = [];
     if (cartCookie) {
       try {
@@ -62,7 +62,7 @@ export async function addToCartAction(bookId: number, qty: number = 1, color?: s
           cart.push({ book_id: bookId, quantity: allowedAdd, color: cleanColor });
         }
       }
-      cookieStore.set("notebloom_cart", JSON.stringify(cart), { maxAge: 86400 * 30, path: "/" });
+      cookieStore.set("carefirst_cart", JSON.stringify(cart), { maxAge: 86400 * 30, path: "/" });
     }
   }
   revalidatePath("/cart");
@@ -81,7 +81,7 @@ export async function addToCartWithQtyAction(bookId: number, formData: FormData)
   } else {
     // Guest cart in cookies
     const cookieStore = await cookies();
-    const cartCookie = cookieStore.get("notebloom_cart")?.value;
+    const cartCookie = cookieStore.get("carefirst_cart")?.value;
     let cart: Array<{ book_id: number; quantity: number; color?: string | null }> = [];
     if (cartCookie) {
       try {
@@ -116,7 +116,7 @@ export async function addToCartWithQtyAction(bookId: number, formData: FormData)
           cart.push({ book_id: bookId, quantity: allowedAdd, color: cleanColor });
         }
       }
-      cookieStore.set("notebloom_cart", JSON.stringify(cart), { maxAge: 86400 * 30, path: "/" });
+      cookieStore.set("carefirst_cart", JSON.stringify(cart), { maxAge: 86400 * 30, path: "/" });
     }
   }
   revalidatePath("/cart");
@@ -134,7 +134,7 @@ export async function updateCartQtyAction(bookId: number, formData: FormData) {
     await setCartQty(Number(session.user.id), bookId, cleanQty, cleanColor);
   } else {
     const cookieStore = await cookies();
-    const cartCookie = cookieStore.get("notebloom_cart")?.value;
+    const cartCookie = cookieStore.get("carefirst_cart")?.value;
     if (cartCookie) {
       try {
         const cart: Array<{ book_id: number; quantity: number; color?: string | null }> = JSON.parse(cartCookie);
@@ -159,7 +159,7 @@ export async function updateCartQtyAction(bookId: number, formData: FormData) {
               }
               cart[idx].quantity = Math.min(cleanQty, availableStock);
             }
-            cookieStore.set("notebloom_cart", JSON.stringify(cart), { maxAge: 86400 * 30, path: "/" });
+            cookieStore.set("carefirst_cart", JSON.stringify(cart), { maxAge: 86400 * 30, path: "/" });
           }
         }
       } catch (_e) {
@@ -175,13 +175,13 @@ export async function removeFromCartAction(bookId: number, color?: string | null
     await removeFromCart(Number(session.user.id), bookId, cleanColor);
   } else {
     const cookieStore = await cookies();
-    const cartCookie = cookieStore.get("notebloom_cart")?.value;
+    const cartCookie = cookieStore.get("carefirst_cart")?.value;
     if (cartCookie) {
       try {
         const cart: Array<{ book_id: number; quantity: number; color?: string | null }> = JSON.parse(cartCookie);
         if (Array.isArray(cart)) {
           const filtered = cart.filter((it) => !(it.book_id === bookId && (it.color || "") === cleanColor));
-          cookieStore.set("notebloom_cart", JSON.stringify(filtered), { maxAge: 86400 * 30, path: "/" });
+          cookieStore.set("carefirst_cart", JSON.stringify(filtered), { maxAge: 86400 * 30, path: "/" });
         }
       } catch (_e) {
       }
@@ -235,7 +235,7 @@ export async function checkoutAction(prevState: unknown, formData: FormData): Pr
     }));
   } else {
     const cookieStore = await cookies();
-    const cartCookie = cookieStore.get("notebloom_cart")?.value;
+    const cartCookie = cookieStore.get("carefirst_cart")?.value;
     const tempCart: Array<{ book_id: number; quantity: number; color?: string | null }> = cartCookie ? JSON.parse(cartCookie) : [];
 
     const resolvedItems = [];
@@ -310,7 +310,7 @@ export async function checkoutAction(prevState: unknown, formData: FormData): Pr
   if (!session?.user?.id) {
     const cookieStore = await cookies();
     setGuestOrderCookie(cookieStore, result.orderId);
-    cookieStore.delete("notebloom_cart");
+    cookieStore.delete("carefirst_cart");
   }
 
   // 7. Format order summary details
@@ -338,7 +338,7 @@ export async function checkoutAction(prevState: unknown, formData: FormData): Pr
   // 9. Send WhatsApp confirmation (fire-and-forget)
   try {
     const whatsappBody =
-      `Hi ${fullName}! 🛍️ Thanks for ordering from *Notebloom*!\n\n` +
+      `Hi ${fullName}! 🛍️ Thanks for ordering from *Carefirst Pharmacy*!\n\n` +
       `Your order *#${result.orderId}* (Total: ${totalPKR}) has been received.\n\n` +
       `📦 Reply *confirm* to confirm your order\n` +
       `❌ Reply *cancel* to cancel\n\n` +

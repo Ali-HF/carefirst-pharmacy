@@ -7,7 +7,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   trustHost: true,
   session: { strategy: "jwt" },
   pages: {
-    signIn: "/notebloom-secure-gate-77",
+    signIn: "/carefirst-secure-gate-88",
   },
   providers: [
     Credentials({

@@ -17,14 +17,14 @@ export async function POST(request: Request) {
       await removeFromCart(Number(session.user.id), bookId, color);
     } else {
       const cookieStore = await cookies();
-      const cartCookie = cookieStore.get("notebloom_cart")?.value;
+      const cartCookie = cookieStore.get("carefirst_cart")?.value;
       if (cartCookie) {
         try {
           const cart: Array<{ book_id: number; quantity: number; color?: string | null }> = JSON.parse(cartCookie);
           if (Array.isArray(cart)) {
             const cleanColor = color || "";
             const filtered = cart.filter((it) => !(it.book_id === bookId && (it.color || "") === cleanColor));
-            cookieStore.set("notebloom_cart", JSON.stringify(filtered), { maxAge: 86400 * 30, path: "/" });
+            cookieStore.set("carefirst_cart", JSON.stringify(filtered), { maxAge: 86400 * 30, path: "/" });
           }
         } catch (_e) {
           // ignore parse errors

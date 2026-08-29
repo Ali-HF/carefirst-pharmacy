@@ -133,7 +133,7 @@ export async function verifyCodeAction(
     return { error: "Failed to verify the code. Please try again." };
   }
 
-  redirect("/notebloom-secure-gate-77?verified=true");
+  redirect("/carefirst-secure-gate-88?verified=true");
 }
 
 export async function resendVerificationAction(email: string): Promise<{ success?: string; error?: string }> {
@@ -171,7 +171,7 @@ export async function resendVerificationAction(email: string): Promise<{ success
 
 export async function logoutAction() {
   const headersList = await headers();
-  const host = headersList.get("host") || "notebloom.shop";
+  const host = headersList.get("host") || "carefirst.pk";
   const protocol = host.includes("localhost") ? "http" : "https";
   await signOut({ redirectTo: `${protocol}://${host}/` });
 }
@@ -238,5 +238,5 @@ export async function resetPasswordAction(
     return { error: "An error occurred resetting your password. Please try again." };
   }
 
-  redirect("/notebloom-secure-gate-77?resetSuccess=true");
+  redirect("/carefirst-secure-gate-88?resetSuccess=true");
 }
