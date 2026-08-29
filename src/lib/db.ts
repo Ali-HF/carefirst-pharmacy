@@ -215,6 +215,14 @@ export async function seedIfEmpty() {
 
 
 
+    // Ensure performance indexes exist for fast queries
+    await sql`CREATE INDEX IF NOT EXISTS idx_books_genre ON books (genre)`;
+    await sql`CREATE INDEX IF NOT EXISTS idx_books_created_at ON books (created_at DESC)`;
+    await sql`CREATE INDEX IF NOT EXISTS idx_books_price ON books (price_cents)`;
+    await sql`CREATE INDEX IF NOT EXISTS idx_order_items_book_id ON order_items (book_id)`;
+    await sql`CREATE INDEX IF NOT EXISTS idx_reviews_book_id ON reviews (book_id)`;
+    await sql`CREATE INDEX IF NOT EXISTS idx_cart_items_user_id ON cart_items (user_id)`;
+
     // Always ensure the demo admin account is seeded
     const adminExists = await sql`SELECT id FROM users WHERE email = 'admin@carefirst.shop'`;
     if (adminExists.length === 0) {

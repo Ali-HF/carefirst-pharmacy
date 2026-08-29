@@ -107,6 +107,25 @@ export default function ShopClient({
     return result;
   }, [initialBooks, genre, sort, q]);
 
+  // Progressive loading / Pagination for blazing fast DOM rendering
+  const PAGE_SIZE = 24;
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+
+  // Reset visible count when filters or search change
+  useEffect(() => {
+    setVisibleCount(PAGE_SIZE);
+  }, [genre, sort, q]);
+
+  const displayedBooks = useMemo(() => {
+    return processedBooks.slice(0, visibleCount);
+  }, [processedBooks, visibleCount]);
+
+  const hasMore = visibleCount < processedBooks.length;
+
+  const handleLoadMore = () => {
+    setVisibleCount((prev) => Math.min(prev + PAGE_SIZE, processedBooks.length));
+  };
+
   return (
     <>
       <FilterBar
@@ -140,11 +159,40 @@ export default function ShopClient({
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 animate-fadeIn">
-            {processedBooks.map((book) => (
-              <BookCard key={book.id} book={book} />
-            ))}
-          </div>
+          <>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 animate-fadeIn">
+              {displayedBooks.map((book) => (
+                <BookCard key={book.id} book={book} />
+              ))}
+            </div>
+
+            {/* Pagination & Load More */}
+            <div className="mt-12 flex flex-col items-center justify-center gap-4 pb-8">
+              <p className="text-xs text-gray-500 font-medium">
+                Showing <span className="font-semibold text-gray-800">{displayedBooks.length}</span> of{" "}
+                <span className="font-semibold text-gray-800">{processedBooks.length}</span> products
+              </p>
+              
+              {/* Progress bar */}
+              <div className="w-48 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-primary transition-all duration-300 rounded-full"
+                  style={{
+                    width: `${Math.min(100, (displayedBooks.length / processedBooks.length) * 100)}%`,
+                  }}
+                />
+              </div>
+
+              {hasMore && (
+                <button
+                  onClick={handleLoadMore}
+                  className="mt-2 px-8 py-3 bg-[#0c2a4d] hover:bg-[#081d36] text-white text-sm font-semibold rounded-lg shadow-md hover:shadow-lg transition-all active:scale-95 cursor-pointer flex items-center gap-2"
+                >
+                  Load More Products ({processedBooks.length - displayedBooks.length} remaining)
+                </button>
+              )}
+            </div>
+          </>
         )}
       </div>
     </>
