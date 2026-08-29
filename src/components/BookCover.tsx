@@ -1,7 +1,9 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 
 type Palette = { bg: string; fg: string; band: string };
-
 
 const PALETTES: Record<string, { bg: string; fg: string }> = {
   Medicine: { bg: "#e0f2fe", fg: "#0284c7" },
@@ -46,16 +48,25 @@ export default function BookCover({
   className?: string;
   sizes?: string;
 }) {
-  const isUrl = seed && (seed.startsWith("http://") || seed.startsWith("https://") || seed.startsWith("/"));
+  const [hasError, setHasError] = useState(false);
+
+  // Upgrade http to https to prevent mixed-content blocks
+  let safeSeed = seed;
+  if (safeSeed && safeSeed.startsWith("http://")) {
+    safeSeed = safeSeed.replace("http://", "https://");
+  }
+
+  const isUrl = safeSeed && !hasError && (safeSeed.startsWith("https://") || safeSeed.startsWith("/"));
   if (isUrl && !isSecondary) {
     return (
       <div className={`relative overflow-hidden bg-white rounded-md flex items-center justify-center p-2 ${className}`} style={{ aspectRatio: "1/1" }}>
         <Image
-          src={seed}
+          src={safeSeed}
           alt={title}
           fill
           unoptimized={true}
           sizes={sizes}
+          onError={() => setHasError(true)}
           className="object-contain transition-transform duration-300 group-hover:scale-105"
         />
       </div>
